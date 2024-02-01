@@ -102,7 +102,7 @@ class NodeModuleItem extends SpriteComponent
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    position += event.delta;
+    position += event.localDelta;
     graphNode.cachedPosition = position.toOffset();
   }
 }

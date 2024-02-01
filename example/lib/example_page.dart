@@ -40,19 +40,19 @@ class _ExamplePageState extends State<ExamplePage> {
           ..strokeWidth = 1.5;
       },
       builder: (GraphNode graphNode) {
-        return Container(
+        return SizedBox(
           width: 100,
           height: 100,
           child: Center(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
                 (graphNode as TestGraphNode).value,
-                style: TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.blue),
               ),
             ),
           ),
@@ -140,7 +140,7 @@ class _ExamplePageState extends State<ExamplePage> {
           ..strokeWidth = 1;
       },
       builder: (GraphNode graphNode) {
-        return Container(
+        return SizedBox(
           width: 200,
           height: 200,
           child: Center(
@@ -167,66 +167,7 @@ class _ExamplePageState extends State<ExamplePage> {
       return TestGraphNode(
         id: '1',
         value: "Advanced Graphview",
-        graphNodes: [
-          TestGraphNode(
-            id: "2",
-            graphNodes: [
-              TestGraphNode(
-                id: "3",
-                graphNodes: [
-                  TestGraphNode(
-                    id: "4",
-                    graphNodes: [
-                      TestGraphNode(
-                        id: "5",
-                        graphNodes: [
-                          TestGraphNode(
-                            id: "6",
-                            graphNodes: [],
-                            value: "Hack Mode",
-                          ),
-                        ],
-                        value: "Hack Mode",
-                      ),
-                    ],
-                    value: "Hack Mode",
-                  ),
-                ],
-                value: "Hack Mode",
-              ),
-            ],
-            value: "Example",
-          ),
-          TestGraphNode(
-            id: "7",
-            graphNodes: [
-              TestGraphNode(
-                id: "8",
-                graphNodes: [
-                  TestGraphNode(
-                    id: "9",
-                    graphNodes: [
-                      TestGraphNode(
-                        id: "10",
-                        graphNodes: [
-                          TestGraphNode(
-                            id: "11",
-                            graphNodes: [],
-                            value: "Hack Mode",
-                          ),
-                        ],
-                        value: "Hack Mode",
-                      ),
-                    ],
-                    value: "Hack Mode",
-                  ),
-                ],
-                value: "Hack Mode",
-              ),
-            ],
-            value: "Example",
-          ),
-        ],
+        graphNodes: [],
       );
     }
 
@@ -255,7 +196,7 @@ class _ExamplePageState extends State<ExamplePage> {
           ..strokeWidth = 1;
       },
       builder: (GraphNode graphNode) {
-        return Container(
+        return SizedBox(
           width: 200,
           height: 200,
           child: Center(

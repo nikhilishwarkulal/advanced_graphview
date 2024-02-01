@@ -12,26 +12,78 @@ and the Flutter guide for
 -->
 
 Advanced Graphview enables user to create Tree, Graph, Topology Ui with simple Setup.
+[![](https://luckyapp.in/assets/asstes/advanced_graphview1.gif)](https://luckyapp.in/assets/asstes/advanced_graphview1.gif)
+[![](https://luckyapp.in/assets/asstes/advanced_graphview2.gif)](https://luckyapp.in/assets/asstes/advanced_graphview2.gif)
+[![](https://luckyapp.in/assets/asstes/advanced_graphview3.gif)](https://luckyapp.in/assets/asstes/advanced_graphview3.gif)
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Advanced Graphview can  create Tree, Graph, Topology Ui with simple Setup..
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the package in pubspec.yaml and then use the widget AdvancedGraphview.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+
 
 ```dart
-const like = 'sample';
+Widget exampleWidget(){
+  TestGraphNode getExampleNode() {
+    return TestGraphNode(
+      id: '1',
+      value: "Advanced Graphview",
+      graphNodes: [
+      ],
+    );
+  }
+  
+ return AdvancedGraphview(
+    nodePadding: 50,
+    nodeSize: 200,
+    isDebug: false,
+    graphNode: getExampleNode(),
+    backgroundColor: Colors.black,
+    pixelRatio: 10,
+    onNodeTap: (graphNode) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Tap Event detected ${graphNode.id}"),
+      ));
+    },
+    advancedGraphviewController: advancedGraphviewController,
+    onDrawLine: (lineFrom, lineTwo) {
+      return Paint()
+        ..color = Colors.blue
+        ..strokeWidth = 1;
+    },
+    builder: (GraphNode graphNode) {
+      return Container(
+        width: 200,
+        height: 200,
+        child: const Center(
+          child: Text("Hello"),
+        ),
+      );
+    },
+  );
+}
+
+class TestGraphNode extends GraphNode {
+  @override
+  final String id;
+
+  final String value;
+
+  @override
+  final List<GraphNode> graphNodes;
+  TestGraphNode({
+    required this.id,
+    required this.graphNodes,
+    required this.value,
+  });
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+For additional information contact us at nikhilishwar2@gmail.com or sharathkkotian@gmail.com. We welcome more contributors on this project. 

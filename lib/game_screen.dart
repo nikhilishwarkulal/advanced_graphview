@@ -158,7 +158,7 @@ class _NodeModuleImageRendererState extends State<NodeModuleImageRenderer> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: widget.nodeSize.x,
         height: widget.nodeSize.y,
         child: RepaintBoundary(
