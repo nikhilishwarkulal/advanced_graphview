@@ -1,5 +1,6 @@
-import 'package:advanced_graphview/advanced_graphview.dart';
+import 'package:advanced_graphview/advanced_graphview_controller.dart';
 import 'package:advanced_graphview/game_screen.dart';
+import 'package:advanced_graphview/graph_node.dart';
 import 'package:flutter/material.dart';
 
 class ExamplePage extends StatefulWidget {
@@ -150,7 +151,7 @@ class _ExamplePageState extends State<ExamplePage> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Image.asset(
-                "assets/images/screensh/${graphNode.id == "1" ? "dad" : "kid"}.png",
+                "assets/images/screenshots/${graphNode.id == "1" ? "dad" : "kid"}.png",
                 width: graphNode.id == "1" ? 200 : 50,
                 height: graphNode.id == "1" ? 200 : 50,
                 fit: BoxFit.contain,
@@ -206,7 +207,7 @@ class _ExamplePageState extends State<ExamplePage> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Image.asset(
-                "assets/images/screensh/${(int.parse(graphNode.id) % 6 == 0 ? 1 : int.parse(graphNode.id) % 6).floor()}.jpg",
+                "assets/images/screenshots/${(int.parse(graphNode.id) % 6 == 0 ? 1 : int.parse(graphNode.id) % 6).floor()}.jpg",
                 width: 200,
                 height: 200,
                 fit: BoxFit.contain,

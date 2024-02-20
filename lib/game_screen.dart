@@ -1,17 +1,18 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 
+import 'package:advanced_graphview/advanced_graphview_controller.dart';
+import 'package:advanced_graphview/graph_node.dart';
 import 'package:advanced_graphview/world_map.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'advanced_graphview.dart';
-import 'flame_game_screen.dart';
+import 'advanced_graphview_flame.dart';
+import 'graph_data_structure.dart';
 import 'image_loader.dart';
 
 class AdvancedGraphview extends StatefulWidget {
-  // final GraphNode head;
   final double nodeSize;
   final double nodePadding;
   final GraphNode graphNode;
@@ -56,13 +57,13 @@ class _AdvancedGraphviewState extends State<AdvancedGraphview> {
 
   void startLoadingImage() async {
     await loadImage();
-    if (widget.advancedGraphviewController?.chachedGraphNode != null) {
+    if (widget.advancedGraphviewController?.cachedGraphNode != null) {
       graphDataStructure = GraphDataStructure(
-          graphNode: widget.advancedGraphviewController!.chachedGraphNode!);
+          graphNode: widget.advancedGraphviewController!.cachedGraphNode!);
     } else {
       graphDataStructure = GraphDataStructure(graphNode: widget.graphNode);
       if (widget.advancedGraphviewController != null) {
-        widget.advancedGraphviewController!.chachedGraphNode = widget.graphNode;
+        widget.advancedGraphviewController!.cachedGraphNode = widget.graphNode;
       }
     }
 
@@ -93,7 +94,7 @@ class _AdvancedGraphviewState extends State<AdvancedGraphview> {
               ),
             ),
         GameWidget(
-          game: FollowComponentExample(
+          game: AdvancedGraphviewFlame(
             nodePadding: widget.nodePadding,
             graphDataStructure: graphDataStructure,
             nodeSize: widget.nodeSize,
