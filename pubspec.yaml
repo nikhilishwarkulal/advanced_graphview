@@ -1,6 +1,6 @@
 name: advanced_graphview
 description: "Advanced Graphview enables users to create Tree, Graph, Topology UI with simple setup. This package can be used to display different flows."
-version: 0.0.7
+version: 1.0.1
 homepage: https://github.com/nikhilishwarkulal/advanced_graphview
 
 environment:
@@ -24,8 +24,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - packages/advanced_graphview/assets/images/animations/
+#  assets:
+#    - packages/advanced_graphview/assets/images/animations/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages

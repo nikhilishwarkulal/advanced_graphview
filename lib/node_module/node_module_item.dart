@@ -1,49 +1,16 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:advanced_graphview/graph_node.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/palette.dart';
 
-import 'advanced_graphview_flame.dart';
-import 'graph_data_structure.dart';
-import 'image_loader.dart';
+import '../advanced_graphview/advanced_graphview_flame.dart';
+import '../graph_data_structure.dart';
+import '../image_loader.dart';
 
-class NodeModule extends PositionComponent
-    with HasGameRef<AdvancedGraphviewFlame> {
-  final Vector2 nodeSize;
-  final Vector2 nodePosition;
-  final double nodePadding;
-  final double nodeImageSize;
-  final GraphDataStructure graphDataStructure;
-  final GraphNode graphNode;
-  NodeModule({
-    required this.nodeSize,
-    required this.nodePosition,
-    required this.nodePadding,
-    required this.graphDataStructure,
-    required this.graphNode,
-    required this.nodeImageSize,
-  });
-  bool isUpdated = false;
-  @override
-  Future<void> onLoad() async {
-    size = nodeSize;
-    position = nodePosition;
-
-    game.world.add(NodeModuleItem(
-        nodeSize: nodeSize,
-        nodePosition: nodePosition,
-        nodePadding: nodePadding,
-        graphDataStructure: graphDataStructure,
-        graphNode: graphNode,
-        nodeImageSize: nodeImageSize));
-    return super.onLoad();
-  }
-}
-
+/// [NodeModuleItem] will render the child item
+/// in the canvas
 class NodeModuleItem extends SpriteComponent
     with HasGameRef<AdvancedGraphviewFlame>, DragCallbacks, TapCallbacks {
   final Vector2 nodeSize;
@@ -77,7 +44,7 @@ class NodeModuleItem extends SpriteComponent
 
     graphNode.cachedPosition = position.toOffset();
     sprite = Sprite(
-      grenade,
+      transparentImage,
     );
 
     return super.onLoad();
@@ -105,28 +72,5 @@ class NodeModuleItem extends SpriteComponent
   void onDragUpdate(DragUpdateEvent event) {
     position += event.localDelta;
     graphNode.cachedPosition = position.toOffset();
-  }
-}
-
-class LineDrawer extends PositionComponent
-    with HasGameRef<AdvancedGraphviewFlame> {
-  LineDrawer({required this.graphNode}) : super();
-  final GraphNode graphNode;
-
-  @override
-  Future<void> onLoad() async {}
-
-  @override
-  void render(Canvas canvas) {
-    for (var items in graphNode.graphNodes) {
-      if (graphNode.item == null) break;
-      if (items.item == null) continue;
-      Paint paint = BasicPalette.red.paint();
-      if (game.onDrawLine != null) {
-        paint = game.onDrawLine!(items, graphNode) ?? BasicPalette.red.paint();
-      }
-      canvas.drawLine(items.item!.center.toOffset(),
-          graphNode.item!.center.toOffset(), paint);
-    }
   }
 }

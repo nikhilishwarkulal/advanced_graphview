@@ -1,31 +1,53 @@
 import 'dart:math';
-import 'dart:ui' as ui;
 
-import 'package:advanced_graphview/advanced_graphview_controller.dart';
+import 'package:advanced_graphview/advanced_graphview/advanced_graphview_controller.dart';
 import 'package:advanced_graphview/graph_node.dart';
+import 'package:advanced_graphview/widgets/node_module_image_renderer_widget.dart';
 import 'package:advanced_graphview/world_map.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-import 'advanced_graphview_flame.dart';
-import 'graph_data_structure.dart';
-import 'image_loader.dart';
+import '../advanced_graphview/advanced_graphview_flame.dart';
+import '../graph_data_structure.dart';
+import '../image_loader.dart';
 
-class AdvancedGraphview extends StatefulWidget {
+/// [AdvancedGraphviewWidget] will create tree structured nodes
+class AdvancedGraphviewWidget extends StatefulWidget {
+  /// [nodeSize] represents the size of the node
   final double nodeSize;
+
+  /// [nodeSize] represents padding between the nodes
   final double nodePadding;
+
+  /// [nodeSize] this is the Head of the tree(first parent of the tree)
   final GraphNode graphNode;
+
+  /// [isDebug] will show the wireframe
   final bool isDebug;
+
+  /// [isDebug] decide the paint needed to draw the line
   final Paint? Function(GraphNode lineFrom, GraphNode lineTwo)? onDrawLine;
+
+  /// [builder] pass the widget that has to be rendered in tree children
+  /// note : Only static widget can be passed animating or widget which keeps
+  /// changing its state will not be rendered.
   final Widget Function(GraphNode graphNode) builder;
+
+  /// [advancedGraphviewController] will give you the control to handle state
   final AdvancedGraphviewController? advancedGraphviewController;
+
+  /// set the background color of the canvas
   final Color? backgroundColor;
+
+  /// pixel ratio sets the widget pixel ratio
   final double pixelRatio;
+
+  /// action when you tap a node
   final Function(GraphNode)? onNodeTap;
-  const AdvancedGraphview({
+
+  /// [AdvancedGraphviewWidget] will create tree structured nodes
+  const AdvancedGraphviewWidget({
     super.key,
-    // required this.head,
     required this.nodePadding,
     required this.nodeSize,
     required this.graphNode,
@@ -39,10 +61,11 @@ class AdvancedGraphview extends StatefulWidget {
   });
   static late BuildContext context;
   @override
-  State<AdvancedGraphview> createState() => _AdvancedGraphviewState();
+  State<AdvancedGraphviewWidget> createState() =>
+      _AdvancedGraphviewWidgetState();
 }
 
-class _AdvancedGraphviewState extends State<AdvancedGraphview> {
+class _AdvancedGraphviewWidgetState extends State<AdvancedGraphviewWidget> {
   bool loader = true;
   late FlameGame myGame;
   late GraphDataStructure graphDataStructure;
@@ -51,10 +74,11 @@ class _AdvancedGraphviewState extends State<AdvancedGraphview> {
   @override
   void initState() {
     super.initState();
-    AdvancedGraphview.context = context;
+    AdvancedGraphviewWidget.context = context;
     startLoadingImage();
   }
 
+  /// The image will start loading once loaded it starts caching the data
   void startLoadingImage() async {
     await loadImage();
     if (widget.advancedGraphviewController?.cachedGraphNode != null) {
@@ -69,10 +93,10 @@ class _AdvancedGraphviewState extends State<AdvancedGraphview> {
 
     Set<String> items = graphDataStructure.getListOfItems();
     length = sqrt(items.length).ceil();
-    WorldMap.size = (widget.nodeSize + (widget.nodePadding * 2)) * length;
+    CanvasMap.size = (widget.nodeSize + (widget.nodePadding * 2)) * length;
     nodeMap = graphDataStructure.getAllItems();
     if (widget.advancedGraphviewController != null) {
-      widget.advancedGraphviewController?.maxScrollExtent = WorldMap.size;
+      widget.advancedGraphviewController?.maxScrollExtent = CanvasMap.size;
     }
     setState(() {
       loader = false;
@@ -110,69 +134,6 @@ class _AdvancedGraphviewState extends State<AdvancedGraphview> {
 
         //const PickerScreen(pickerScreenDataFirst: ,)
       ],
-    );
-  }
-}
-
-class NodeModuleImageRenderer extends StatefulWidget {
-  final Widget child;
-  final Vector2 nodeSize;
-  final GraphNode graphNode;
-  final GraphDataStructure graphDataStructure;
-  final double pixelRatio;
-  const NodeModuleImageRenderer({
-    super.key,
-    required this.child,
-    required this.nodeSize,
-    required this.graphDataStructure,
-    required this.graphNode,
-    required this.pixelRatio,
-  });
-
-  @override
-  State<NodeModuleImageRenderer> createState() =>
-      _NodeModuleImageRendererState();
-}
-
-class _NodeModuleImageRendererState extends State<NodeModuleImageRenderer> {
-  GlobalKey globalKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(
-        const Duration(seconds: 1),
-        () => _capturePng(),
-      );
-    });
-  }
-
-  Future<void> _capturePng() async {
-    RenderRepaintBoundary boundary =
-        globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage(pixelRatio: widget.pixelRatio);
-    widget.graphDataStructure.nodeImages[widget.graphNode.id] = image;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: widget.nodeSize.x,
-        height: widget.nodeSize.y,
-        child: RepaintBoundary(
-          key: globalKey,
-          child: Align(
-            child: SizedBox(
-              width: widget.nodeSize.x,
-              height: widget.nodeSize.y,
-              child: widget.child,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

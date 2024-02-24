@@ -18,3 +18,11 @@
 
 * Unused dependency removed.
 * Cleared all warnings
+
+## 0.0.6
+
+* Optimisation
+
+## 0.0.7
+
+* Optimisation

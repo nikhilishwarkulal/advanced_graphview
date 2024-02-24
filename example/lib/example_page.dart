@@ -1,6 +1,6 @@
-import 'package:advanced_graphview/advanced_graphview_controller.dart';
-import 'package:advanced_graphview/game_screen.dart';
+import 'package:advanced_graphview/advanced_graphview/advanced_graphview_controller.dart';
 import 'package:advanced_graphview/graph_node.dart';
+import 'package:advanced_graphview/widgets/game_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExamplePage extends StatefulWidget {
@@ -17,18 +17,18 @@ class _ExamplePageState extends State<ExamplePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    advancedGraphviewController.setZoomValue(zoom: 1.5);
+    advancedGraphviewController.setZoomValue(zoom: 1);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: getFirst(),
+      body: getSecond(),
     );
   }
 
   Widget getSecond() {
-    return AdvancedGraphview(
+    return AdvancedGraphviewWidget(
       nodePadding: 50,
       nodeSize: 200,
       isDebug: false,
@@ -127,7 +127,7 @@ class _ExamplePageState extends State<ExamplePage> {
       );
     }
 
-    return AdvancedGraphview(
+    return AdvancedGraphviewWidget(
       nodePadding: 10,
       nodeSize: 200,
       isDebug: false,
@@ -172,7 +172,7 @@ class _ExamplePageState extends State<ExamplePage> {
       );
     }
 
-    return AdvancedGraphview(
+    return AdvancedGraphviewWidget(
       nodePadding: 50,
       nodeSize: 200,
       isDebug: false,
