@@ -28,7 +28,7 @@ class _ExamplePageState extends State<ExamplePage> {
   }
 
   Widget getSecond() {
-    return AdvancedGraphviewWidget(
+    return AdvancedGraphviewWidget<TestGraphNode>(
       nodePadding: 50,
       nodeSize: 200,
       isDebug: false,
@@ -40,7 +40,7 @@ class _ExamplePageState extends State<ExamplePage> {
           ..color = Colors.blue
           ..strokeWidth = 1.5;
       },
-      builder: (GraphNode graphNode) {
+      builder: (graphNode) {
         return SizedBox(
           width: 100,
           height: 100,
@@ -52,7 +52,7 @@ class _ExamplePageState extends State<ExamplePage> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
-                (graphNode as TestGraphNode).value,
+                (graphNode).value,
                 style: const TextStyle(color: Colors.blue),
               ),
             ),
@@ -172,7 +172,7 @@ class _ExamplePageState extends State<ExamplePage> {
       );
     }
 
-    return AdvancedGraphviewWidget(
+    return AdvancedGraphviewWidget<TestGraphNode>(
       nodePadding: 50,
       nodeSize: 200,
       isDebug: false,

@@ -12,8 +12,10 @@ import '../graph_data_structure.dart';
 import '../image_loader.dart';
 
 /// [AdvancedGraphviewWidget] will create tree structured nodes
-class AdvancedGraphviewWidget extends StatefulWidget {
+class AdvancedGraphviewWidget<T extends GraphNode> extends StatefulWidget {
   /// [nodeSize] represents the size of the node
+
+  // final GraphNode head;
   final double nodeSize;
 
   /// [nodeSize] represents padding between the nodes
@@ -26,12 +28,12 @@ class AdvancedGraphviewWidget extends StatefulWidget {
   final bool isDebug;
 
   /// [isDebug] decide the paint needed to draw the line
-  final Paint? Function(GraphNode lineFrom, GraphNode lineTwo)? onDrawLine;
+  final Paint? Function(T lineFrom, T lineTwo)? onDrawLine;
 
   /// [builder] pass the widget that has to be rendered in tree children
   /// note : Only static widget can be passed animating or widget which keeps
   /// changing its state will not be rendered.
-  final Widget Function(GraphNode graphNode) builder;
+  final Widget Function(T graphNode) builder;
 
   /// [advancedGraphviewController] will give you the control to handle state
   final AdvancedGraphviewController? advancedGraphviewController;
