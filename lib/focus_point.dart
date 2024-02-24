@@ -84,7 +84,7 @@ class FocusPointImpl extends FocusPoint<AdvancedGraphviewFlame>
     // print(game.camera.);
   }
 
-  /// Below is the logic for key down while clicking WDSQ scroll it
+  /// Below is the logic for key down while clicking WD-SQ scroll it
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     final isKeyDown = event is RawKeyDownEvent;

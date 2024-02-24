@@ -34,3 +34,7 @@
 ## 1.0.1
 
 * Optimisation
+
+## 1.0.2
+
+* Optimisation
