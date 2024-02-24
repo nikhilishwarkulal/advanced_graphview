@@ -1,6 +1,6 @@
 name: advanced_graphview
 description: "Advanced Graphview enables users to create Tree, Graph, Topology UI with simple setup. This package can be used to display different flows."
-version: 1.0.1
+version: 1.0.0
 homepage: https://github.com/nikhilishwarkulal/advanced_graphview
 
 environment:

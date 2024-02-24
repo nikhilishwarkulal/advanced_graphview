@@ -26,3 +26,7 @@
 ## 0.0.7
 
 * Optimisation
+
+## 1.0.0
+
+* Documentation
