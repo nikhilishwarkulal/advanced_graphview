@@ -11,13 +11,6 @@ class WorldMap extends Component {
 
   @override
   void render(Canvas canvas) {
-    // canvas.drawRect(_bounds, _paintBg);
-    // canvas.drawRect(_bounds, _paintBorder);
-    for (double i = 0; i < size; i = i + 50) {
-      for (double j = 0; j < size; j = j + 50) {
-        // canvas.drawRect(_rectPool[i], _paintBorder);
-        //canvas.drawImage(rectangleBgImage, Offset(i, j), _paintBorder);
-      }
-    }
+    // If you want to add any background then it can be added here.
   }
 }

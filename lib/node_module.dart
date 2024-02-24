@@ -1,17 +1,18 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:advanced_graphview/graph_node.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/palette.dart';
 
-import 'advanced_graphview.dart';
-import 'flame_game_screen.dart';
+import 'advanced_graphview_flame.dart';
+import 'graph_data_structure.dart';
 import 'image_loader.dart';
 
 class NodeModule extends PositionComponent
-    with HasGameRef<FollowComponentExample> {
+    with HasGameRef<AdvancedGraphviewFlame> {
   final Vector2 nodeSize;
   final Vector2 nodePosition;
   final double nodePadding;
@@ -44,7 +45,7 @@ class NodeModule extends PositionComponent
 }
 
 class NodeModuleItem extends SpriteComponent
-    with HasGameRef<FollowComponentExample>, DragCallbacks, TapCallbacks {
+    with HasGameRef<AdvancedGraphviewFlame>, DragCallbacks, TapCallbacks {
   final Vector2 nodeSize;
   final Vector2 nodePosition;
   final double nodePadding;
@@ -108,7 +109,7 @@ class NodeModuleItem extends SpriteComponent
 }
 
 class LineDrawer extends PositionComponent
-    with HasGameRef<FollowComponentExample> {
+    with HasGameRef<AdvancedGraphviewFlame> {
   LineDrawer({required this.graphNode}) : super();
   final GraphNode graphNode;
 
@@ -127,8 +128,5 @@ class LineDrawer extends PositionComponent
       canvas.drawLine(items.item!.center.toOffset(),
           graphNode.item!.center.toOffset(), paint);
     }
-
-    // canvas.drawRect(Rect.fromCircle(center: const Offset(0, 0), radius: 20),
-    //     BasicPalette.red.paint());
   }
 }

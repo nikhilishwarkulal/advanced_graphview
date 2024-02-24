@@ -2,8 +2,7 @@ library advanced_graphview;
 
 import 'dart:ui' as ui;
 
-import 'package:advanced_graphview/node_module.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:advanced_graphview/graph_node.dart';
 
 class GraphDataStructure {
   Map<String, ui.Image> nodeImages = {};
@@ -66,39 +65,5 @@ class GraphDataStructure {
     }
 
     recursion(graphNode, onLoad);
-  }
-}
-
-abstract class GraphNode {
-  /// id represents the uniqueness of the node.
-  /// id is used to link nodes.
-  /// children id must not be same as parent. to avoid self loop
-  String get id;
-
-  List<GraphNode> get graphNodes;
-
-  NodeModuleItem? item;
-
-  ui.Offset? cachedPosition;
-}
-
-class AdvancedGraphviewController extends ValueNotifier {
-  GraphNode? chachedGraphNode;
-  AdvancedGraphviewController() : super(null);
-  double? scrollX;
-  double? scrollY;
-  double? maxScrollExtent;
-  double? zoom;
-  void setScroll({double? scrollX, double? scrollY}) {
-    this.scrollX = scrollX;
-    this.scrollY = scrollY;
-  }
-
-  void setZoomValue({double? zoom}) {
-    this.zoom = zoom;
-  }
-
-  void clearCache() {
-    chachedGraphNode = null;
   }
 }
