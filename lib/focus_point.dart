@@ -4,9 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as mat;
-import 'package:flutter/services.dart';
 
 /// [FocusPoint] is just a pointer pointing center of the screen
 /// since this is an game engine while scrolling focal point will
@@ -28,7 +26,7 @@ class FocusPoint<T extends FlameGame> extends PositionComponent
 /// since this is an game engine while scrolling focal point will
 /// be move based on direction
 class FocusPointImpl extends FocusPoint<AdvancedGraphviewFlame>
-    with CollisionCallbacks, KeyboardHandler {
+    with CollisionCallbacks {
   /// speed of focal point movement
   /// is same as speed of scroll
   static const double speed = 300;
@@ -82,35 +80,5 @@ class FocusPointImpl extends FocusPoint<AdvancedGraphviewFlame>
             game.advancedGraphviewController!.scrollY!)
         : position;
     // print(game.camera.);
-  }
-
-  /// Below is the logic for key down while clicking WD-SQ scroll it
-  @override
-  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    final isKeyDown = event is RawKeyDownEvent;
-
-    final bool handled;
-    if (event.logicalKey == LogicalKeyboardKey.keyA) {
-      velocity.x = isKeyDown ? -1 : 0;
-      handled = true;
-    } else if (event.logicalKey == LogicalKeyboardKey.keyD) {
-      velocity.x = isKeyDown ? 1 : 0;
-      handled = true;
-    } else if (event.logicalKey == LogicalKeyboardKey.keyW) {
-      velocity.y = isKeyDown ? -1 : 0;
-      handled = true;
-    } else if (event.logicalKey == LogicalKeyboardKey.keyS) {
-      velocity.y = isKeyDown ? 1 : 0;
-      handled = true;
-    } else {
-      handled = false;
-    }
-
-    if (handled) {
-      //angle = -velocity.angleToSigned(Vector2(1, 0));
-      return false;
-    } else {
-      return super.onKeyEvent(event, keysPressed);
-    }
   }
 }

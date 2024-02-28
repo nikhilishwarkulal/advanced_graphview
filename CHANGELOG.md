@@ -38,3 +38,7 @@
 ## 1.0.2
 
 * Optimisation
+
+## 1.0.3
+
+* Unwanted code removed
